@@ -2,21 +2,9 @@
 
 ## Configuration
 
-## Commands
-
-### Start minikube
-
-```{sh}
-minikube start --vm-driver=virtualbox
-```
-
 ### Get
 
 #### Get pods
-
-```{sh}
-kubectl get pods
-```
 
 #### Get services
 
@@ -56,13 +44,28 @@ kubectl describe pods
 
 #### Apply changes
 
+### Describe pods
+
 ```{sh}
-kubectl apply -f [filename]
+kubectl describe pods
 ```
 
-### Access pod terminal using interactive mode
+### Get services
 
 ```{sh}
+kubectl get svc
+```
+
+### Get nodes
+
+- Use flags to get internal IP
+
+```{sh}
+kubectl get nodes -o wide
+```
+
+### Apply changes
+
 kubectl exec -it [podname] -- bash
 ```
 
@@ -96,4 +99,7 @@ kubectl rollout history deployment [deploymentname]
 
 ```{sh}
 kubectl rollout undo deployment [deploymentname]
+```
+
+kubectl -it [podname] -- bash
 ```
