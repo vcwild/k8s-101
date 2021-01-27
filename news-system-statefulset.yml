@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: news-system-statefulset
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: news-system
+      name: news-system
+    spec:
+      containers:
+        - name: news-system-container
+          image: aluracursos/sistema-noticias:1
+          ports:
+          - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: system-configmap
+          volumeMounts:
+            - name: images
+              mountPath: /var/www/html/uploads
+            - name: session
+              mountPath: /tmp
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /inserir_noticias.php
+              port: 80
+            periodSeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 3
+      volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: images-pvc
+        - name: session
+          persistentVolumeClaim:
+            claimName: session-pvc
+  selector:
+    matchLabels:
+      app: news-system
+  serviceName: svc-news-system
