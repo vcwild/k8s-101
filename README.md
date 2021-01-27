@@ -2,11 +2,21 @@
 
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
 
-## API Configuration
+## Configuration
+
+### Start minikube
+
+```{sh}
+minikube start --vm-driver=virtualbox
+```
 
 ### Get
 
 #### Get pods
+
+```{sh}
+kubectl get pods
+```
 
 #### Get services
 
@@ -46,28 +56,13 @@ kubectl describe pods
 
 #### Apply changes
 
-### Describe pods
-
 ```{sh}
-kubectl describe pods
+kubectl apply -f [filename]
 ```
 
-### Get services
+### Access pod terminal using interactive mode
 
 ```{sh}
-kubectl get svc
-```
-
-### Get nodes
-
-- Use flags to get internal IP
-
-```{sh}
-kubectl get nodes -o wide
-```
-
-### Apply changes
-
 kubectl exec -it [podname] -- bash
 ```
 
