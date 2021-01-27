@@ -1,6 +1,8 @@
-# Kubernetes tutorial using minikube
+# Kubernetes Tutorial Using Minikube
 
-## Configuration
+- [Kubernetes Documentation](https://kubernetes.io/docs/home/)
+
+## API Configuration
 
 ### Get
 
