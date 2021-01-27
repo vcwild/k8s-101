@@ -102,6 +102,3 @@ kubectl rollout history deployment [deploymentname]
 ```{sh}
 kubectl rollout undo deployment [deploymentname]
 ```
-
-kubectl -it [podname] -- bash
-```
